@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Movie from "../components/movie";
 import s from "../style/main.module.css";
 import PersonalCard from "../components/personalCard";
+import Time from "../components/time";
+import Pet from "../components/pet";
 
 export default function Main() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div>
       <div className={s.mainBox}>
@@ -28,8 +40,17 @@ export default function Main() {
           tech={"HTML, CSS, JS, React"}
           city={"Кременчук"}
         />
-        <p> Поточний час</p>
-        <p> Домашній улюбленець</p>
+        <Time time={currentTime} />
+        <Pet
+          title={"Мій домашній улюбленець"}
+          photoLink={
+            "https://imgtr.ee/images/2024/01/23/e059ce2af3ec776898308ec4d331d3db.png"
+          }
+          name={"Маргарита"}
+          desc={
+            "Моя кішка шотландської прямовухої породи. Їй 4 роки. Вона більш за все любить поїсти та поспати. А ще погратися)"
+          }
+        />
       </div>
     </div>
   );

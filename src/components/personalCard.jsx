@@ -1,5 +1,5 @@
 import React from 'react'
-import s from "../style/personalCard.module.css"
+import s from "../style/card.module.css"
 
 export default function PersonalCard(props) {
   return (
